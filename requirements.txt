@@ -1,1 +1,2 @@
 protobuf
+mypy-protobuf # https://github.com/dropbox/mypy-protobuf

@@ -1,0 +1,1 @@
+docker run -v `pwd`:/defs namely/protoc-all:1.11 -f demo.proto -l python php go --with-docs --with-gateway

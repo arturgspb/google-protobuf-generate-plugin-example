@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package example;
+option java_multiple_files = true;
+
+import "google/api/annotations.proto";
+//import "google/protobuf/descriptor.proto";
+//extend google.protobuf.FieldOptions {
+//    Column column = 50002;
+//}
+//
+//message Column {
+//    bool pk = 1;
+//}
+
+
+message Person {
+//    int32 id = 1 [(column) = {pk: true}];
+    int32 id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string email = 4; // Person mail
+}
+
+message StringMessage {
+  string value = 1;
+}
+
+service YourService {
+  rpc Echo(StringMessage) returns (StringMessage) {
+    option (google.api.http) = {
+      post: "/v1/example/echo"
+      body: "*"
+    };
+  }
+}

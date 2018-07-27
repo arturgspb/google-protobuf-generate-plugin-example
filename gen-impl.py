@@ -35,6 +35,7 @@ for file in request.proto_file:
         out += """public class {type_name} """.format(type_name=type_name)
         out += """ {\n\n"""
 
+        # https://developers.google.com/protocol-buffers/docs/reference/java/com/google/protobuf/DescriptorProtos.FieldDescriptorProto
         for field in message.field:
             out += """    @Column(name = "{fname}")\n""".format(fname=field.name)
             out += """    private {lang_type} {fname};\n""".format(fname=field.json_name, lang_type={
@@ -42,8 +43,10 @@ for file in request.proto_file:
                 "TYPE_INT32": "Integer",
             }.get(str(field.type), "String"))
             out += str(field.options.__str__())
-            for x in field.options:
-                out += """!"""
+            out += str(field.__str__())
+            out += str(field.__dict__())
+            # for x in field.options:
+            #     out += """!"""
 
             out += """\n"""
 
